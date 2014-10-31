@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Anonymous board</title>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="//localhost/bower_components/bootstrap-material-design/dist/css/ripples.min.css" rel="stylesheet">
+    <link href="//localhost/bower_components/bootstrap-material-design/dist/css/material-wfont.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1>CIZION Timeline</h1>
+        <div class="modal" id="modal-write">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        <h4 class="modal-title">Choose the category</h4><br />
+                        <label class="radio-inline">
+                            <input type="radio" name="radio-category" id="radio-talk" value="talk" checked> Talk
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="radio-category" id="radio-qa" value="qa"> Q&A
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="radio-category" id="radio-discussion" value="discussion"> Disscussion
+                        </label>
+                    </div>
+                    <div class="modal-body">
+                        <textarea class="form-control" rows="3" id="textArea"></textarea>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <nav class="navbar navbar-warning" role="navigation">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                  <a class="navbar-brand" href="#">CIZION</a>
+                </div>
+                <div class="collapse navbar-collapse" id="nav-main">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="#">Talk</a></li>
+                        <li><a href="#">Q&A</a></li>
+                        <li><a href="#">Discussion</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="#" data-toggle="modal" data-target="#modal-write">Write</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <div class="timeline-section">
+            <div class="row">
+                <div class="col-lg-4"></div>
+                <div class="col-lg-4"></div>
+                <div class="col-lg-4"></div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="//localhost/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="//localhost/bower_components/bootstrap-material-design/dist/js/ripples.min.js"></script>
+    <script src="//localhost/bower_components/bootstrap-material-design/dist/js/material.min.js"></script>
+    <script src="//localhost/bower_components/handlebars/handlebars.min.js"></script>
+
+    <script id="timeline-template" type="text/x-handlebars-template">
+        <div class="panel panel-warning">
+            <div class="panel-body">
+                {{content}}
+            </div>
+            <div class="panel-footer">
+                <input class="form-control floating-label" id="focusedInput" type="text" placeholder="Write your comment..">
+            </div>
+        </div>
+    </script>
+
+    <script>
+        (function($) {
+            var context = {
+                    content: 'Good morning'
+                },
+                source = $("#timeline-template").html(),
+                template = Handlebars.compile(source),
+                html = template(context);
+
+            for (var i=0;i<10;i++) {
+                $('.col-lg-4').append(html);
+            }
+
+
+        })(jQuery);
+    </script>
+</body>
+</html>
