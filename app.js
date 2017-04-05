@@ -3,8 +3,7 @@
 var express = require('express'),
     http = require('http'),
     bodyParser = require('body-parser'),
-    methodOverride = require('method-override'),
-    routes = require('./routes');
+    methodOverride = require('method-override');
 
 var app = express();
     app.use(methodOverride());
@@ -19,7 +18,10 @@ app.all('*', function(req, res, next) {
     next();
 });
 
-app.get('/v1/timeline', routes.getTimeline);
-app.post('/v1/timeline', routes.write);
+app.get('/', function(req, res) {
+    return res.jsonp({
+        message: 'Hello World'
+    });
+})
 
 app.listen(8082);
